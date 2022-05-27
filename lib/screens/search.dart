@@ -29,16 +29,20 @@ class _SearchScreenState extends State<SearchScreen> {
           height: 40,
           child: TextField(
               cursorColor: Theme.of(context).primaryColor,
-              // textAlignVertical: TextAlignVertical.center,
+              textAlignVertical: TextAlignVertical.bottom,
               style: Theme.of(context).textTheme.subtitle1,
               decoration: InputDecoration(
                 hintText: 'Search devices...',
                 hintStyle: Theme.of(context).textTheme.subtitle1?.copyWith(
-                  color: Theme.of(context).textTheme.subtitle1?.color?.withOpacity(0.5),
-                ),
+                      color: Theme.of(context).textTheme
+                          .subtitle1?.color?.withOpacity(0.5),
+                    ),
                 prefixIcon: Icon(
                   Icons.search,
                   color: Theme.of(context).primaryColor,
+                ),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(100.0)
                 ),
                 focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(100.0),
