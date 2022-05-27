@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="net.fathonix.knowphones">
    <application
-        android:label="knowphones"
+        android:label="KnowPhones"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
