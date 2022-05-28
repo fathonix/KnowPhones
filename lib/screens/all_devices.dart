@@ -60,7 +60,10 @@ class AllDevicesScreen extends StatelessWidget {
                       vertical: 7.5,
                       horizontal: 30.0,
                     ),
-                    child: Text('All Devices'),
+                    child: Text(
+                      'All Devices',
+                      style: TextStyle(fontWeight: FontWeight.w700),
+                    ),
                   ),
                 ),
                 const SizedBox(width: 10.0),
@@ -74,7 +77,10 @@ class AllDevicesScreen extends StatelessWidget {
                     ),
                     child: Text(
                       'Categories',
-                      style: TextStyle(color: Theme.of(context).primaryColor),
+                      style: TextStyle(
+                        color: Theme.of(context).primaryColor,
+                        fontWeight: FontWeight.w700,
+                      ),
                     ),
                   ),
                 ),

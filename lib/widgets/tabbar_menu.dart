@@ -1,5 +1,6 @@
 import 'package:bubble_tab_indicator/bubble_tab_indicator.dart';
 import 'package:flutter/material.dart';
+import 'package:knowphones/constants.dart';
 import 'package:knowphones/models/device_category.dart';
 import 'package:knowphones/models/device.dart';
 import 'package:knowphones/services/device_data.dart';
@@ -39,8 +40,16 @@ class _TabBarMenuState extends State<TabBarMenu>
           padding: const EdgeInsets.symmetric(horizontal: 10.0),
           child: TabBar(
             tabs: tabs,
-            labelColor: Colors.white,
-            unselectedLabelColor: Theme.of(context).primaryColor,
+            labelStyle: const TextStyle(
+              color: Colors.white,
+              fontFamily: Constants.fontFamily,
+              fontWeight: FontWeight.w700,
+            ),
+            unselectedLabelStyle: TextStyle(
+              color: Theme.of(context).primaryColor,
+              fontFamily: Constants.fontFamily,
+              fontWeight: FontWeight.w700,
+            ),
             indicatorSize: TabBarIndicatorSize.tab,
             controller: _tabController,
             indicator: BubbleTabIndicator(

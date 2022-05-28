@@ -19,7 +19,7 @@ class DetailItem extends StatelessWidget {
             child: Text(
               specs.title,
               textAlign: TextAlign.left,
-              style: Theme.of(context).textTheme.headline3,
+              style: Theme.of(context).textTheme.subtitle2,
             ),
           ),
         ),
