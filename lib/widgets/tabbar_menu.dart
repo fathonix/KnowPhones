@@ -5,6 +5,7 @@ import 'package:knowphones/models/device_category.dart';
 import 'package:knowphones/models/device.dart';
 import 'package:knowphones/services/device_data.dart';
 import 'package:knowphones/widgets/device_item.dart';
+import 'package:knowphones/widgets/reload_dialog.dart';
 
 class TabBarMenu extends StatefulWidget {
   const TabBarMenu({Key? key}) : super(key: key);
@@ -65,9 +66,15 @@ class _TabBarMenuState extends State<TabBarMenu>
                 children: tabs.map((Tab tab) {
                   return FutureBuilder(
                     future: DeviceData.getByCategory(tab.text!),
-                    builder: (context, snapshot) => snapshot.data != null
-                        ? _deviceCategory(snapshot.data as List<Device>)
-                        : const Center(child: CircularProgressIndicator()),
+                    builder: (context, snapshot) {
+                      if (!snapshot.hasError) {
+                        if (snapshot.hasData) {
+                          return _deviceCategory(snapshot.data as List<Device>);
+                        }
+                        return const Center(child: CircularProgressIndicator());
+                      }
+                      return ReloadDialog(callback: () => setState(() {}));
+                    }
                   );
                 }).toList())),
       ],

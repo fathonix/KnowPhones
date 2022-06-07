@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:knowphones/models/device.dart';
 import 'package:knowphones/services/device_data.dart';
 import 'package:knowphones/widgets/device_item.dart';
+import 'package:knowphones/widgets/reload_dialog.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({Key? key}) : super(key: key);
@@ -78,22 +79,25 @@ class _SearchScreenState extends State<SearchScreen> {
       return FutureBuilder(
         future: DeviceData.searchDevice(keyword),
         builder: (context, snapshot) {
-          if (snapshot.data != null) {
-            final List<Device> devices = snapshot.data as List<Device>;
-            if (devices.isNotEmpty) {
-              return ListView.builder(
-                itemCount: devices.length,
-                itemBuilder: (context, index) =>
-                    DeviceItem(device: devices[index]),
-              );
+          if (!snapshot.hasError) {
+            if (snapshot.hasData) {
+              final List<Device> devices = snapshot.data as List<Device>;
+              if (devices.isNotEmpty) {
+                return ListView.builder(
+                  itemCount: devices.length,
+                  itemBuilder: (context, index) =>
+                      DeviceItem(device: devices[index]),
+                );
+              }
+              return Center(
+                  child: Text(
+                'No matches found.',
+                style: Theme.of(context).textTheme.subtitle1,
+              ));
             }
-            return Center(
-                child: Text(
-              'No matches found.',
-              style: Theme.of(context).textTheme.subtitle1,
-            ));
+            return const Center(child: CircularProgressIndicator());
           }
-          return const Center(child: CircularProgressIndicator());
+          return ReloadDialog(callback: () => setState(() {}));
         },
       );
     }

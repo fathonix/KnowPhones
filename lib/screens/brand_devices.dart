@@ -7,6 +7,8 @@ import 'package:knowphones/services/device_data.dart';
 import 'package:knowphones/widgets/custom_page_route.dart';
 import 'package:knowphones/widgets/device_item.dart';
 
+import '../widgets/reload_dialog.dart';
+
 class BrandDevicesScreen extends StatefulWidget {
   final Brands brands;
 
@@ -54,19 +56,18 @@ class _BrandDevicesScreenState extends State<BrandDevicesScreen> {
           ),
         ],
       ),
-      body: RefreshIndicator(
-        onRefresh: () => Future.sync(
-          () => _pagingController.refresh(),
+      body: PagedListView.separated(
+        pagingController: _pagingController,
+        builderDelegate: PagedChildBuilderDelegate<Device>(
+          itemBuilder: (context, device, index) => DeviceItem(device: device),
+          noItemsFoundIndicatorBuilder: (context) =>
+              const Center(child: Text('No item')),
+          firstPageErrorIndicatorBuilder: (context) =>
+              ReloadDialog(callback: () => _pagingController.refresh()),
+          newPageErrorIndicatorBuilder: (context) =>
+              ReloadDialog(callback: () => _pagingController.refresh()),
         ),
-        child: PagedListView.separated(
-          pagingController: _pagingController,
-          builderDelegate: PagedChildBuilderDelegate<Device>(
-            itemBuilder: (context, device, index) => DeviceItem(device: device),
-            noItemsFoundIndicatorBuilder: (context) =>
-                const Center(child: Text('No item')),
-          ),
-          separatorBuilder: (context, index) => const SizedBox.shrink(),
-        ),
+        separatorBuilder: (context, index) => const SizedBox.shrink(),
       ),
     );
   }

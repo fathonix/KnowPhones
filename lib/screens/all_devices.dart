@@ -6,9 +6,23 @@ import 'package:knowphones/screens/search.dart';
 import 'package:knowphones/services/device_data.dart';
 import 'package:knowphones/widgets/brand_item.dart';
 import 'package:knowphones/widgets/custom_page_route.dart';
+import 'package:knowphones/widgets/reload_dialog.dart';
 
-class AllDevicesScreen extends StatelessWidget {
+class AllDevicesScreen extends StatefulWidget {
   const AllDevicesScreen({Key? key}) : super(key: key);
+
+  @override
+  State<AllDevicesScreen> createState() => _AllDevicesScreenState();
+}
+
+class _AllDevicesScreenState extends State<AllDevicesScreen> {
+  // late final List<Brands> data;
+  //
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   data = [];
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -57,12 +71,15 @@ class AllDevicesScreen extends StatelessWidget {
                   ),
                   child: const Padding(
                     padding: EdgeInsets.symmetric(
-                      vertical: 7.5,
+                      vertical: 7,
                       horizontal: 30.0,
                     ),
                     child: Text(
                       'All Devices',
-                      style: TextStyle(fontWeight: FontWeight.w700),
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w700,
+                      ),
                     ),
                   ),
                 ),
@@ -90,13 +107,21 @@ class AllDevicesScreen extends StatelessWidget {
           Expanded(
             child: FutureBuilder(
               future: DeviceData.getBrands(),
-              builder: (context, snapshot) => snapshot.data != null
-                  ? ListView.builder(
+              builder: (context, snapshot) {
+                if (!snapshot.hasError) {
+                  if (snapshot.hasData) {
+                    // data.addAll(snapshot.data as List<Brands>);
+                    final data = snapshot.data as List<Brands>;
+                    return ListView.builder(
                       itemBuilder: (context, index) => BrandItem(
-                          brands: (snapshot.data as List<Brands>)[index]),
-                      itemCount: (snapshot.data as List<Brands>).length,
-                    )
-                  : const Center(child: CircularProgressIndicator()),
+                        brands: data[index]),
+                      itemCount: data.length,
+                    );
+                  }
+                  return const Center(child: CircularProgressIndicator());
+                }
+                return ReloadDialog(callback: () => setState(() {}));
+              }
             ),
           ),
         ],
