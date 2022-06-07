@@ -12,12 +12,21 @@ class ReloadDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
-          Text(desc),
+          Text(
+            desc,
+            style: Theme.of(context).textTheme.subtitle1,
+          ),
+          const SizedBox(height: 10.0),
           MaterialButton(
             textColor: Colors.white,
             color: Theme.of(context).primaryColor,
             onPressed: callback,
+            child: Text(
+              'Try again',
+              style: Theme.of(context).textTheme.bodyText2,
+            ),
           )
         ],
       ),
