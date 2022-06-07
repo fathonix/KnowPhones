@@ -40,13 +40,13 @@ class _TabBarMenuState extends State<TabBarMenu>
           padding: const EdgeInsets.symmetric(horizontal: 10.0),
           child: TabBar(
             tabs: tabs,
+            labelColor: Colors.white,
             labelStyle: const TextStyle(
-              color: Colors.white,
               fontFamily: Constants.fontFamily,
               fontWeight: FontWeight.w700,
             ),
-            unselectedLabelStyle: TextStyle(
-              color: Theme.of(context).primaryColor,
+            unselectedLabelColor: Theme.of(context).primaryColor,
+            unselectedLabelStyle: const TextStyle(
               fontFamily: Constants.fontFamily,
               fontWeight: FontWeight.w700,
             ),
