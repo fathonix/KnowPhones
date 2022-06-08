@@ -30,17 +30,16 @@ class MyApp extends StatelessWidget {
         color: Colors.black,
         fontFamily: Constants.fontFamily,
         fontWeight: FontWeight.w700,
-        fontSize: 18,
+        fontSize: 20,
       ),
       bodyText1: TextStyle(
         color: Colors.black,
         fontFamily: Constants.fontFamily,
-        fontSize: 18,
+        fontSize: 16,
       ),
       bodyText2: TextStyle(
         color: Colors.black,
         fontFamily: Constants.fontFamily,
-        fontSize: 16
       ),
     );
 
