@@ -5,8 +5,9 @@ import 'package:knowphones/models/device.dart';
 import 'package:knowphones/services/device_data.dart';
 import 'package:knowphones/widgets/carousel.dart';
 import 'package:knowphones/widgets/detail_item.dart';
+import 'package:knowphones/widgets/reload_dialog.dart';
 
-class DetailScreen extends StatelessWidget {
+class DetailScreen extends StatefulWidget {
   final Device device;
 
   const DetailScreen({
@@ -15,16 +16,27 @@ class DetailScreen extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  State<DetailScreen> createState() => _DetailScreenState();
+}
+
+class _DetailScreenState extends State<DetailScreen> {
+
+  @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: DeviceData.getDetails(device.slug),
-      builder: (context, snapshot) => snapshot.data != null
-          ? _showDetails(context, snapshot.data as Details)
-          : Scaffold(
-              appBar: AppBar(title: Text(device.phoneName)),
+        future: DeviceData.getDetails(widget.device.slug),
+        builder: (context, snapshot) {
+          if (!snapshot.hasError) {
+            if (snapshot.hasData) {
+              return _showDetails(context, snapshot.data as Details);
+            }
+            return Scaffold(
+              appBar: AppBar(title: Text(widget.device.phoneName)),
               body: const Center(child: CircularProgressIndicator()),
-            ),
-    );
+            );
+          }
+          return ReloadDialog(callback: () => setState(() {}));
+        });
   }
 
   Widget _showDetails(BuildContext context, Details details) {
