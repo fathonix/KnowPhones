@@ -16,13 +16,6 @@ class AllDevicesScreen extends StatefulWidget {
 }
 
 class _AllDevicesScreenState extends State<AllDevicesScreen> {
-  // late final List<Brands> data;
-  //
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   data = [];
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -110,7 +103,6 @@ class _AllDevicesScreenState extends State<AllDevicesScreen> {
               builder: (context, snapshot) {
                 if (!snapshot.hasError) {
                   if (snapshot.hasData) {
-                    // data.addAll(snapshot.data as List<Brands>);
                     final data = snapshot.data as List<Brands>;
                     return ListView.builder(
                       itemBuilder: (context, index) => BrandItem(
