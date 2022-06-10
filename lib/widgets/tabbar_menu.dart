@@ -67,13 +67,13 @@ class _TabBarMenuState extends State<TabBarMenu>
                   return FutureBuilder(
                     future: DeviceData.getByCategory(tab.text!),
                     builder: (context, snapshot) {
-                      if (!snapshot.hasError) {
-                        if (snapshot.hasData) {
-                          return _deviceCategory(snapshot.data as List<Device>);
-                        }
+                      if (snapshot.connectionState != ConnectionState.done) {
                         return const Center(child: CircularProgressIndicator());
                       }
-                      return ReloadDialog(callback: () => setState(() {}));
+                      if (snapshot.hasError) {
+                        return ReloadDialog(callback: () => setState(() {}));
+                      }
+                      return _deviceCategory(snapshot.data as List<Device>);
                     }
                   );
                 }).toList())),

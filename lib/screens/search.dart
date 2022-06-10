@@ -79,25 +79,25 @@ class _SearchScreenState extends State<SearchScreen> {
       return FutureBuilder(
         future: DeviceData.searchDevice(keyword),
         builder: (context, snapshot) {
-          if (!snapshot.hasError) {
-            if (snapshot.hasData) {
-              final List<Device> devices = snapshot.data as List<Device>;
-              if (devices.isNotEmpty) {
-                return ListView.builder(
-                  itemCount: devices.length,
-                  itemBuilder: (context, index) =>
-                      DeviceItem(device: devices[index]),
-                );
-              }
-              return Center(
-                  child: Text(
+          if (snapshot.connectionState != ConnectionState.done) {
+            return const Center(child: CircularProgressIndicator());
+          }
+          if (snapshot.hasError) {
+            return ReloadDialog(callback: () => setState(() {}));
+          }
+          final List<Device> devices = snapshot.data as List<Device>;
+          if (devices.isNotEmpty) {
+            return ListView.builder(
+              itemCount: devices.length,
+              itemBuilder: (context, index) =>
+                  DeviceItem(device: devices[index]),
+            );
+          }
+          return Center(
+              child: Text(
                 'No matches found.',
                 style: Theme.of(context).textTheme.subtitle1,
               ));
-            }
-            return const Center(child: CircularProgressIndicator());
-          }
-          return ReloadDialog(callback: () => setState(() {}));
         },
       );
     }

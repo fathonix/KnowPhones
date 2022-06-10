@@ -101,18 +101,18 @@ class _AllDevicesScreenState extends State<AllDevicesScreen> {
             child: FutureBuilder(
               future: DeviceData.getBrands(),
               builder: (context, snapshot) {
-                if (!snapshot.hasError) {
-                  if (snapshot.hasData) {
-                    final data = snapshot.data as List<Brands>;
-                    return ListView.builder(
-                      itemBuilder: (context, index) => BrandItem(
-                        brands: data[index]),
-                      itemCount: data.length,
-                    );
-                  }
+                if (snapshot.connectionState != ConnectionState.done) {
                   return const Center(child: CircularProgressIndicator());
                 }
-                return ReloadDialog(callback: () => setState(() {}));
+                if (snapshot.hasError) {
+                  return ReloadDialog(callback: () => setState(() {}));
+                }
+                final data = snapshot.data as List<Brands>;
+                return ListView.builder(
+                  itemBuilder: (context, index) => BrandItem(
+                      brands: data[index]),
+                  itemCount: data.length,
+                );
               }
             ),
           ),

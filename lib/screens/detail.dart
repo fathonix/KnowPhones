@@ -20,22 +20,24 @@ class DetailScreen extends StatefulWidget {
 }
 
 class _DetailScreenState extends State<DetailScreen> {
-
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
         future: DeviceData.getDetails(widget.device.slug),
         builder: (context, snapshot) {
-          if (!snapshot.hasError) {
-            if (snapshot.hasData) {
-              return _showDetails(context, snapshot.data as Details);
-            }
+          if (snapshot.connectionState != ConnectionState.done) {
             return Scaffold(
               appBar: AppBar(title: Text(widget.device.phoneName)),
               body: const Center(child: CircularProgressIndicator()),
             );
           }
-          return ReloadDialog(callback: () => setState(() {}));
+          if (snapshot.hasError) {
+            return Scaffold(
+              appBar: AppBar(title: Text(widget.device.phoneName)),
+              body: ReloadDialog(callback: () => setState(() {})),
+            );
+          }
+          return _showDetails(context, snapshot.data as Details);
         });
   }
 
