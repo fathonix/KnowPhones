@@ -25,7 +25,9 @@ class ReloadDialog extends StatelessWidget {
             onPressed: callback,
             child: Text(
               'Try again',
-              style: Theme.of(context).textTheme.bodyText2,
+              style: Theme.of(context).textTheme.bodyText2?.copyWith(
+                color: Colors.white,
+              ),
             ),
           )
         ],
