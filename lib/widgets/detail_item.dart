@@ -31,7 +31,6 @@ class DetailItem extends StatelessWidget {
               itemBuilder: (context, index) {
                 final Spec spec = specs.spec[index];
                 return ListTile(
-                  dense: true,
                   title: SizedBox(
                     width: double.infinity,
                     child: Text(
