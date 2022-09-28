@@ -30,10 +30,10 @@ class DeviceData {
     final _response = await http.get(Uri.parse('$baseUrl/$_endpoint'));
 
     if (_response.statusCode == 200) {
+      debugPrint(_response.body);
       var _data = jsonDecode(_response.body)['data']['phones'] as List;
       final List<Device>? _list =
           _data.map((json) => Device.fromJson(json)).toList();
-      debugPrint(_response.body);
       return _list;
     } else {
       throw Exception('Unable to get data.');
@@ -44,10 +44,10 @@ class DeviceData {
     final _response = await http.get(Uri.parse('$baseUrl/brands'));
 
     if (_response.statusCode == 200) {
+      debugPrint(_response.body);
       final _data = jsonDecode(_response.body)['data'] as List;
       final List<Brands>? _list =
           _data.map((json) => Brands.fromJson(json)).toList();
-      debugPrint(_response.body);
       return _list;
     } else {
       throw Exception('Unable to get data.');
@@ -59,9 +59,9 @@ class DeviceData {
         await http.get(Uri.parse('$baseUrl/brands/$slug?page=$page'));
 
     if (_response.statusCode == 200) {
+      debugPrint(_response.body);
       final _data = jsonDecode(_response.body)['data'];
       final BrandDevices? _list = BrandDevices.fromJson(_data);
-      debugPrint(_response.body);
       return _list;
     } else {
       throw Exception('Unable to get data.');
@@ -72,9 +72,9 @@ class DeviceData {
     final _response = await http.get(Uri.parse('$baseUrl/$slug'));
 
     if (_response.statusCode == 200) {
+      debugPrint(_response.body);
       final _data = jsonDecode(_response.body)['data'];
       final Details? _list = Details.fromJson(_data);
-      debugPrint(_response.body);
       return _list;
     } else {
       throw Exception('Unable to get data.');
@@ -86,10 +86,10 @@ class DeviceData {
         await http.get(Uri.parse('$baseUrl/search?query=$keyword'));
 
     if (_response.statusCode == 200) {
+      debugPrint(_response.body);
       final _data = jsonDecode(_response.body)['data']['phones'] as List;
       final List<Device>? _list =
           _data.map((json) => Device.fromJson(json)).toList();
-      debugPrint(_response.body);
       return _list;
     } else {
       throw Exception('Unable to get data.');
