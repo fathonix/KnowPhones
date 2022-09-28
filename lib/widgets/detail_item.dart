@@ -30,19 +30,38 @@ class DetailItem extends StatelessWidget {
               itemCount: specs.spec.length,
               itemBuilder: (context, index) {
                 final Spec spec = specs.spec[index];
-                return ListTile(
-                  title: SizedBox(
-                    width: double.infinity,
-                    child: Text(
-                      spec.key,
-                      style: Theme.of(context).textTheme.bodyText1,
-                    ),
+
+                const padding = 15.0;
+                final width = MediaQuery.of(context).size.width - (padding * 2);
+                final valWidth = width / 1.7;
+                final keyWidth = width - valWidth;
+
+                return Padding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: padding,
+                      vertical: 8.0
                   ),
-                  trailing: SizedBox(
-                    width: MediaQuery.of(context).size.width / 1.7,
-                    child: Text(
-                      spec.val.join('\n'),
-                      style: Theme.of(context).textTheme.bodyText2,
+                  child: IntrinsicHeight(
+                    child: Row(
+                      children: [
+                      SizedBox(
+                        width: keyWidth,
+                        child: Align(
+                          alignment: Alignment.topLeft,
+                          child: Text(
+                            spec.key,
+                            style: Theme.of(context).textTheme.bodyText1,
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        width: valWidth,
+                        child: Text(
+                          spec.val.join('\n'),
+                          style: Theme.of(context).textTheme.bodyText2,
+                        ),
+                      ),
+                      ],
                     ),
                   ),
                 );
