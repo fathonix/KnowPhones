@@ -36,7 +36,7 @@ class DeviceData {
           _data.map((json) => Device.fromJson(json)).toList();
       return _list;
     } else {
-      throw Exception('Unable to get data.');
+      throw Exception('Request returned status code ${_response.statusCode}');
     }
   }
 
@@ -50,7 +50,7 @@ class DeviceData {
           _data.map((json) => Brands.fromJson(json)).toList();
       return _list;
     } else {
-      throw Exception('Unable to get data.');
+      throw Exception('Request returned status code ${_response.statusCode}');
     }
   }
 
@@ -64,7 +64,7 @@ class DeviceData {
       final BrandDevices? _list = BrandDevices.fromJson(_data);
       return _list;
     } else {
-      throw Exception('Unable to get data.');
+      throw Exception('Request returned status code ${_response.statusCode}');
     }
   }
 
@@ -77,7 +77,7 @@ class DeviceData {
       final Details? _list = Details.fromJson(_data);
       return _list;
     } else {
-      throw Exception('Unable to get data.');
+      throw Exception('Request returned status code ${_response.statusCode}');
     }
   }
 
@@ -92,7 +92,7 @@ class DeviceData {
           _data.map((json) => Device.fromJson(json)).toList();
       return _list;
     } else {
-      throw Exception('Unable to get data.');
+      throw Exception('Request returned status code ${_response.statusCode}');
     }
   }
 }
