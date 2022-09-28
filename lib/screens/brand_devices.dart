@@ -62,10 +62,14 @@ class _BrandDevicesScreenState extends State<BrandDevicesScreen> {
           itemBuilder: (context, device, index) => DeviceItem(device: device),
           noItemsFoundIndicatorBuilder: (context) =>
               const Center(child: Text('No item')),
-          firstPageErrorIndicatorBuilder: (context) =>
-              ReloadDialog(callback: () => _pagingController.refresh()),
-          newPageErrorIndicatorBuilder: (context) =>
-              ReloadDialog(callback: () => _pagingController.refresh()),
+          firstPageErrorIndicatorBuilder: (context) {
+            debugPrint(_pagingController.error.toString());
+            return ReloadDialog(callback: () => _pagingController.refresh());
+          },
+          newPageErrorIndicatorBuilder: (context) {
+            debugPrint(_pagingController.error.toString());
+            return ReloadDialog(callback: () => _pagingController.refresh());
+          },
         ),
         separatorBuilder: (context, index) => const SizedBox.shrink(),
       ),

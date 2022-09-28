@@ -71,6 +71,7 @@ class _TabBarMenuState extends State<TabBarMenu>
                         return const Center(child: CircularProgressIndicator());
                       }
                       if (snapshot.hasError) {
+                        debugPrint(snapshot.error.toString());
                         return ReloadDialog(callback: () => setState(() {}));
                       }
                       return _deviceCategory(snapshot.data as List<Device>);
