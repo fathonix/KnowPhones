@@ -105,6 +105,7 @@ class _AllDevicesScreenState extends State<AllDevicesScreen> {
                   return const Center(child: CircularProgressIndicator());
                 }
                 if (snapshot.hasError) {
+                  debugPrint(snapshot.error.toString());
                   return ReloadDialog(callback: () => setState(() {}));
                 }
                 final data = snapshot.data as List<Brands>;
