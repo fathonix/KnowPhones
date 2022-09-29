@@ -8,6 +8,13 @@ class DetailItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    const vpadding = 8.0;
+    const hpadding = vpadding * 2;
+
+    final width = MediaQuery.of(context).size.width - (hpadding * 2);
+    final valWidth = width / 1.7;
+    final keyWidth = width - valWidth;
+
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -15,7 +22,10 @@ class DetailItem extends StatelessWidget {
           width: double.infinity,
           child: Padding(
             padding:
-                const EdgeInsets.symmetric(horizontal: 15.0, vertical: 8.0),
+              const EdgeInsets.symmetric(
+                horizontal: hpadding,
+                vertical: vpadding,
+              ),
             child: Text(
               specs.title,
               textAlign: TextAlign.left,
@@ -31,15 +41,10 @@ class DetailItem extends StatelessWidget {
               itemBuilder: (context, index) {
                 final Spec spec = specs.spec[index];
 
-                const padding = 15.0;
-                final width = MediaQuery.of(context).size.width - (padding * 2);
-                final valWidth = width / 1.7;
-                final keyWidth = width - valWidth;
-
                 return Padding(
                   padding: const EdgeInsets.symmetric(
-                      horizontal: padding,
-                      vertical: 8.0
+                    horizontal: hpadding,
+                    vertical: vpadding,
                   ),
                   child: IntrinsicHeight(
                     child: Row(
