@@ -27,7 +27,7 @@ The latest release is **v1.0.2**.
 
 <p align="center">
     <a href="https://github.com/fathonix/KnowPhones/releases/download/v1.0.2/app-release.apk">
-        <img src="./assets/images/download.png" alt="Download APK" />
+        <img src="./assets/images/download.png" alt="Download APK" height="100"/>
     </a>
 </p>
 
