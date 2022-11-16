@@ -62,7 +62,9 @@ class DetailItem extends StatelessWidget {
                       SizedBox(
                         width: valWidth,
                         child: Text(
-                          spec.val.join('\n'),
+                          spec.val
+                            .map((item) => item.trim())
+                            .join('\n'),
                           style: Theme.of(context).textTheme.bodyText2,
                         ),
                       ),
