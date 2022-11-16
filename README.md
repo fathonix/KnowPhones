@@ -19,3 +19,18 @@ This Flutter app shows devices from [GSMArena](https://www.gsmarena.com/) throug
     <img src="./assets/images/category.png" height="416"/>
 	<img src="./assets/images/search.png" height="416"/>
 </p>
+
+## Download
+
+You can get it by clicking the button below or going to the [Releases section](https://github.com/fathonix/KnowPhones/releases).
+The latest release is **v1.0.2**.
+
+<p align="center">
+    <a href="https://github.com/fathonix/KnowPhones/releases/download/v1.0.2/app-release.apk">
+        <img src="./assets/images/download.png" alt="Download APK" />
+    </a>
+</p>
+
+## License
+
+This app is licensed under MIT. © Aldo Adirajasa Fathoni 2022
