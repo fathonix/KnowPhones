@@ -8,7 +8,7 @@ import 'package:knowphones/models/details.dart';
 import 'package:knowphones/models/device.dart';
 
 class DeviceData {
-  static const String baseUrl = 'https://phone-specs-api.azharimm.dev/v2';
+  static const String baseUrl = 'https://phone-specs-api.azharimm.dev';
 
   static Future<List<Device>?> getByCategory(String category) async {
     late String _endpoint;
