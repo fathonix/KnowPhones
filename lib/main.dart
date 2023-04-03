@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:knowphones/constants.dart';
 import 'package:knowphones/screens/all_devices.dart';
 
@@ -12,11 +11,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setEnabledSystemUIMode(
-        SystemUiMode.manual,
-        overlays: []
-    );
-
     const TextStyle lightAppBarTextStyle = TextStyle(
       fontWeight: FontWeight.w700,
       fontFamily: Constants.fontFamily,
